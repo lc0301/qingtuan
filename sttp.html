@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/new_file.css" />
+		<link rel="stylesheet" href="css/button.css" />
+		<link rel="stylesheet" href="css/sttp.css" />
+		<style>
+			.button{
+				float: right;
+				margin-right: 10px;
+				margin-top: 15px;
+				font-size: 12px;
+			}
+		</style>
+		<!--<script type="text/javascript">
+			 mui.init();
+            mui.ajax('http://118.25.137.21/myself/myac',{
+                dataType:'json',
+                type:'get',
+                timeout:10000,
+                xhrFields: {
+          		withCredentials: true
+       				 },
+       		    crossDomain: true,
+                success:function(data){
+                	
+                     var re= JSON.parse(data).list;
+                    var outStr1="";
+                    mui.each(re,function(i,value){
+					var jsonCell = value;
+					outStr1 += '<li id="first-one" onclick="create1()" style="list-style-type: none;"><div id="picture1"><div><img id="img3" src="http://118.25.137.21/uploads/'+jsonCell.imgurl+'"></div><div style="height: 160px;">'+jsonCell.title+'<div id="picture3"><div id="text2"><img src="images/shijian.png"/>'+jsonCell.deadline+'</div><br /><div id="text3"><img src="images/didian.jpg" />'+jsonCell.place+'</div><br /><div id="text4"><img src="images/yonghu.png" />'+jsonCell.name+'</div></div></div></div></li>';
+				});
+				
+				$("#bo").html(outStr1);
+                 }
+            });
+            
+  
+
+		</script>--> 
+		
+		<script>
+			$(document).ready(function(){
+				$("a").click(function(){
+					$("#bo").hide();
+					$("#boo").show();
+				});
+			});
+			
+		</script>
+	</head>
+	<body> 
+		
+				<header class="mui-bar mui-bar-nav" id="title-plus">
+					 <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+					<h1 class="mui-title">投票</h1>
+				</header>
+				
+				<div class="mui-content">
+					<div class="head-two">
+						<p>2018年社团聚餐之你最喜欢的项目</p>
+					</div>	
+					
+					<!--投票开始-->
+					<div id="bo" style="display: ;">
+					    <div id="bo1"><img src="images/werewolf.png" ><p>野炊</p><a href="#" class="button button-glow button-rounded button-caution">投票</a></div>
+						<div id="bo2"><img src="images/983.png" ><p>轰趴</p><a href="#" class="button button-glow button-rounded button-caution">投票</a></div>
+						<div id="bo3"><img src="images/37.png" ><p>烧烤</p><a href="#" class="button button-glow button-rounded button-caution">投票</a></div>
+						<div id="bo3"><img src="images/37.png" ><p>唱歌</p><a href="#" class="button button-glow button-rounded button-caution">投票</a></div>
+						<div id="bo3"><img src="images/37.png" ><p>聚餐</p><a href="#" class="button button-glow button-rounded button-caution">投票</a></div>
+						<div id="bo3"><img src="images/37.png" ><p>爬山</p><a href="#" class="button button-glow button-rounded button-caution">投票</a></div>
+						<div id="bo3"><img src="images/37.png" ><p>野营</p><a href="#" class="button button-glow button-rounded button-caution">投票</a></div>			
+					</div>
+				</div>
+				
+				
+				<!--投票结果显示-->
+							
+					<div id="boo" style="display: none;">
+						
+					    <div id="bo1"><img src="images/werewolf.png" ><p>野炊</p>
+					    	<div class="skillbar clearfix " data-percent="20%">
+								<div class="skillbar-bar" style="background: #e67e22;"></div>
+								<div class="skill-bar-percent">20%</div>
+							</div>
+					    </div>
+						<div id="bo2"><img src="images/983.png" ><p>轰趴</p>
+							<div class="skillbar clearfix " data-percent="50%">
+								<div class="skillbar-bar" style="background: #3498db;"></div>
+								<div class="skill-bar-percent">50%</div>
+							</div>
+						</div>
+						<div id="bo3"><img src="images/37.png" ><p>烧烤</p>
+							<div class="skillbar clearfix " data-percent="50%">
+								<div class="skillbar-bar" style="background: #525252;"></div>
+								<div class="skill-bar-percent">50%</div>
+							</div>
+						</div>
+						<div id="bo3"><img src="images/37.png" ><p>唱歌</p>
+							<div class="skillbar clearfix " data-percent="40%">
+								<div class="skillbar-bar" style="background: #2ecc71;"></div>
+								<div class="skill-bar-percent">40%</div>
+							</div>
+						</div>
+						<div id="bo3"><img src="images/37.png" ><p>聚餐</p>
+							<div class="skillbar clearfix " data-percent="30%">
+								<div class="skillbar-bar" style="background: #5a68a5;"></div>
+								<div class="skill-bar-percent">30%</div>
+							</div>
+						</div>
+					</div>
+					
+					<script>
+						jQuery(document).ready(function(){
+							jQuery('.skillbar').each(function(){
+								jQuery(this).find('.skillbar-bar').animate({
+									width:jQuery(this).attr('data-percent')
+								},2000);
+							});
+						});
+					</script>
+				
+			
+	</body>
+</html>

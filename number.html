@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min-2.css">
+		
+		<link rel="stylesheet" href="css/new_file.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<style>
+			html,
+			body {
+				background-color: #fff;
+			}		
+			
+		</style>
+	</head>
+
+	<body>
+				<header class="mui-bar mui-bar-nav" id="title-plus">
+			       <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			       <h1 class="mui-title">成员</h1>
+		        </header>
+				<ul id="chengyuan" class="mui-table-view mui-table-view-chevron" style="margin-top: 50px;">
+				
+					
+					
+				</ul>
+			
+		<script src="js/mui.min.js"></script>
+		<script>
+			var club_id = GetQueryString('id');
+		    function GetQueryString(name) {
+           var reg = new RegExp('(\\\\?|\\\\&)' + name + '=([^\\\\&]+)');
+           var reg2 = new RegExp('([^=]+)$');
+           var r = window.location.href.match(reg);
+           if (r != null) {
+          return r[0].match(reg2)[0];
+        } else {
+          return null;
+        }
+      }
+		</script>
+		<script>
+			mui.ajax('http://118.25.137.21/home/detail/'+club_id,{
+               dataType:'json',
+                type:'get',
+                timeout:10000,
+                xhrFields: {
+          		withCredentials: true
+       				 },
+       		    crossDomain: true,
+                success:function(data){
+                    var re= JSON.parse(data).list.member;
+                    var outStr="";
+                    mui.each(re,function(i,value){
+					var jsonCell = value;
+					outStr += '<li class="mui-table-view-cell"><div style="float: left;"><img class="head" src="http://118.25.137.21/uploads/'+jsonCell.touxiang+'" style="margin-left: 5px;width: 40px;height: 40px;vertical-align: middle;"/><span style="margin-left:10px;">'+jsonCell.user_name+'</span></div></li>';
+				});
+				$("#chengyuan").html(outStr);
+                 }
+          });
+		</script>
+	</body>
+
+</html>

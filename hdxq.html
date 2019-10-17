@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/new_file.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/new_file.js" ></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+	</head>
+
+	<body>
+	
+		<script type="text/javascript">
+		  var ac_id = GetQueryString('id');
+		  function GetQueryString(name) {
+          var reg = new RegExp('(\\\\?|\\\\&)' + name + '=([^\\\\&]+)');
+          var reg2 = new RegExp('([^=]+)$');
+          var r = window.location.href.match(reg);
+          if (r != null) {
+          return r[0].match(reg2)[0];
+          } else {
+          return null;
+        }
+      }
+		console.log(ac_id);
+			mui.init();
+			mui.ajax('http://192.168.43.176/activity/detail/'+ac_id,{
+                dataType:'json',
+                type:'get',
+                timeout:10000,
+                success:function(data){
+                     var re= JSON.parse(data).list;
+                     console.log(re);
+                 $("#pictures").attr('src',"http://192.168.43.176/uploads/"+re[0].img);  
+				$("#item1mobile").html(re[0].content);
+				$("#item2mobile").html(re[0].saizhi);
+				$("#item3mobile").html(re[0].yaoqiu);
+				$("#item5mobile").html(re[0].baoming);
+                }
+           });
+           function myfunction(){
+           	    mui.ajax('http://192.168.43.176/activity/partop',{
+           		dataType:'json',
+                type:'POST',
+                xhrFields: {
+          		withCredentials: true
+       				 },
+                crossDomain: true,
+                data:{'ac_id':ac_id},
+                timeout:10000,
+                success:function(result){
+                	console.log(result);
+                	if (result==1) {
+            	   alert("提交成功，请等待通知~");
+                   }else if(result==0){
+            	  alert("提交失败！");
+            	  }
+                    else if(result==3){
+            	  	alert("您已报名过，无需重复报名~")
+            	  }
+                  }
+           	    });
+		}
+		</script>
+			<header class="mui-bar mui-bar-nav" id="title-plus">
+				<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+				<h1 class="mui-title">活动详情</h1>
+			</header>
+			<div id="picture2" style="margin-top:44px;">
+				<img id="pictures" src="images/180430161717.jpg" />
+			</div>
+        <div id="mui-slider" class="mui-slider">  
+        <div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted bg-w" style="font-size: 18px;font-family: '微软雅黑';">  
+            <a class="mui-control-item mui-active" href="#item1mobile">  
+               	简介  
+            </a>  
+            <a class="mui-control-item" href="#item2mobile">  
+               	赛制  
+            </a>  
+            <a class="mui-control-item" href="#item3mobile">  
+               	 要求  
+            </a>  
+            <a class="mui-control-item" href="#item4mobile">  
+                	报名  
+            </a>  
+        </div>  
+        <div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-3"></div>  
+        <div class="mui-slider-group">  
+            <div id="item1mobile" class="base-info md-f1 mui-slider-item mui-control-content detailInfos md-box md-ver mui-active" style="padding: 10px; font-size: 16px;font-family: '微软雅黑';letter-spacing: 3px;"> 
+            	小和山四校辩论赛是小和山最早的非官方的交流活动。由四大高校辩论性质的社团联合举办，从最初的交流活动发展成为成熟的辩论赛事，成为众多辩论爱好者磨炼自己的平台。涌现出许许多多进阶校赛乃至省赛的辩论高手。
+            </div>  
+            <div id="item2mobile" class="process bg md-f1 mui-slider-item mui-control-content detailInfos1 md-box md-ver" style="padding: 10px; font-size: 16px;font-family: '微软雅黑';letter-spacing: 3px;"> 
+                决赛辩题：解决校园霸凌更应该从法律教育入手
+正方：浙江工业大学（法律）
+反方：浙江科技学院（教育）
+            </div>  
+            <div id="item3mobile" class="apply bg md-f1 mui-slider-item mui-control-content detailInfos2 md-box md-ver" style="padding: 10px; font-size: 16px;font-family: '微软雅黑';letter-spacing: 3px;">
+时间：
+12月3日（本周日）13:30
+地点：
+浙江科技学院西图报告厅       
+            </div>  
+            <div id="item4mobile" class="others md-f1 mui-slider-item mui-control-content detailInfos3 md-box md-ver" style="padding: 10px; font-size: 16px;font-family: '微软雅黑';letter-spacing: 3px;">  
+                <div id="item5mobile" class="messageContent">
+                	
+                </div>
+                <input id="submit" onclick="myfunction()" type="submit" value="点击报名" style="margin-top: 10px;"/>        
+            </div>  
+  
+        </div>  
+    </div>  
+        
+            
+        
+	</body>
+
+</html>

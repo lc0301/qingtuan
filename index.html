@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<!--标准mui.css-->
+		<link rel="stylesheet" href="css/mui.min.css">
+		<!--App自定义的css-->
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" href="css/new_file.css" />
+		<link rel="stylesheet" href="css/activity.css" />
+		<link rel="stylesheet" href="css/button.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<!--<script type="text/javascript" src="js/activity.js" ></script>-->
+		<style>
+			
+			.title{
+				margin: 20px 15px 10px;
+				color: #6d6d72;
+				font-size: 15px;
+			}
+			
+			.oa-contact-cell.mui-table .mui-table-cell {
+				padding: 11px 0;
+				vertical-align: middle;
+			}
+			
+			.oa-contact-cell {
+				position: relative;
+				margin: -11px 0;
+			}     
+	
+			.oa-contact-avatar {
+				width: 75px;
+			}
+			.oa-contact-avatar img {
+				border-radius: 50%;
+			}
+			.oa-contact-content {
+				width: 100%;
+			}
+			.oa-contact-name {
+				margin-right: 20px;
+			}
+			.oa-contact-name, oa-contact-position {
+				float: left;
+			}
+			body{
+				background-color: #f4f7fa;				
+			}
+		</style>
+	</head>
+
+	<body>
+		
+		<nav class="mui-bar mui-bar-tab">
+			<a class="mui-tab-item mui-active" href="#tabbar">
+				<span class="mui-icon mui-icon-home"></span>
+				<span class="mui-tab-label">首页</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-chat">
+				<span class="mui-icon mui-icon-star"><!--<span class="mui-badge">9</span>--></span>
+				<span class="mui-tab-label">活动</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-contact">
+				<span class="mui-icon mui-icon-pengyouquan"></span>
+				<span class="mui-tab-label">圈子</span>
+			</a>
+			<a class="mui-tab-item" href="#tabbar-with-map">
+				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-tab-label">我的</span>
+			</a>
+		</nav>
+		
+		
+		<div class="mui-content">
+			
+			<!--首页内容-->
+			<div id="tabbar" class="mui-control-content mui-active">
+				<header class="mui-bar mui-bar-nav" id="title-plus">
+					    <h1 class="mui-title">首页</h1>
+				</header>
+				
+				 <div class="mui-content">
+	       
+			<div class="mui-slider" style="height: 180px;">
+			  <div class="mui-slider-group mui-slider-loop">
+			    <!--支持循环，需要重复图片节点-->
+			    <div class="mui-slider-item mui-slider-item-duplicate"><img id="indeximg5" src="images/180430161717.jpg" style="height: 180px;" /></a></div>
+			    <div class="mui-slider-item"><img id="indeximg1" src="images/400146398_banner.jpg" style="height: 180px;" /></a></div>
+			    <div class="mui-slider-item"><img id="indeximg2" src="images/500622354_banner.jpg" style="height: 180px;" /></a></div>
+			    <div class="mui-slider-item"><img id="indeximg3" src="images/180430161717.jpg" style="height: 180px;" /></a></div>
+			    
+			    <!--支持循环，需要重复图片节点-->
+			    <div class="mui-slider-item mui-slider-item-duplicate"><img id="indeximg4" src="images/400146398_banner.jpg" style="height: 180px;" /></a></div>
+			  </div>
+			  <div class="mui-slider-indicator">
+			 	<div class="mui-indicator mui-active"></div>
+			 	<div class="mui-indicator"></div>
+			 	<div class="mui-indicator"></div>
+			 </div>
+			</div>
+			
+			<script type="text/javascript">
+				mui.plusReady(function(){
+					var gallery = mui('.mui-slider');
+						gallery.slider({
+						  interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+						});
+				});
+			</script>
+			 
+			 
+				<div id="alldemo">
+				 	<div id="demo1" onclick="create1()"><img src="images/process.png" class="demo-1"/> 招新</div>
+				 	<div id="demo2" onclick="create2()"><img src="images/ViewGallery.png" class="demo-1"/> 社团</div>
+				 	<div id="demo3" onclick="create3()"><img src="images/lights.png" class="demo-1"/> 资讯</div>
+				 	<div id="demo4" onclick="create4()"><img src="images/code.png" class="demo-1"/> 投票</div>
+				 	<div id="demo5" onclick="create5()"><img src="images/hot.png" class="demo-1"/> 活动</div>
+				
+
+		<script>
+	    function plusReady(){
+			}
+			if(window.plus){
+				plusReady();
+			}else{
+				document.addEventListener('plusready', plusReady, false);
+			}
+			
+			// 创建并显示新窗口
+			function create1(){
+				var w = plus.webview.create('zx.html');
+				w.show();  
+		    }
+			function create2(){
+				var w = plus.webview.create('st.html');
+				w.show(); // 显示窗口
+			}
+			function create3(){
+				var w = plus.webview.create('zixun.html');
+				w.show(); // 显示窗口
+			}
+			function create4(){
+				var w = plus.webview.create('tp.html');
+				w.show(); // 显示窗口
+			}
+			function create5(){
+				var w = plus.webview.create('wdhd.html');
+				w.show(); // 显示窗口w
+			
+			}
+			function create6(){
+				var w = plus.webview.create('hdxq.html');
+				w.show(); // 显示窗口
+			}
+			function create7(){
+				var w = plus.webview.create('wdxx.html');
+				w.show(); // 显示窗口
+			}
+			function create8(){
+				var w = plus.webview.create('wdst.html');
+				w.show(); // 显示窗口 
+				
+			}
+			function create9(){
+				var w = plus.webview.create('wdhd.html');
+				w.show(); // 显示窗口
+				
+			}
+			function create10(){
+				var w = plus.webview.create('gerenziliao.html');
+				w.show(); // 显示窗口
+			}
+			function create11(){
+				var w = plus.webview.create('ww.html');
+				w.show(); 
+		    }
+			function create15(){
+				var w = plus.webview.create('shezhi.html');
+				w.show(); // 显示窗口window.location.href='fb.html';
+			}
+			function create51(){
+				var w = plus.webview.create('wddt.html');
+				w.show(); // 显示窗口window.location.href='fb.html';
+			}
+			
+			
+			mui.init();
+            mui.ajax('http://192.168.43.176/home/indexnotic',{
+                dataType:'json',
+                type:'get',
+                timeout:10000,
+                xhrFields: {
+          				 withCredentials: true
+       				 },
+                crossDomain: true,
+                success:function(data){
+                    var jsonindex= JSON.parse(data).list;
+                    
+					$("#indeximg1").attr('src',"http://192.168.43.176/uploads/"+jsonindex[0].imgurl);$("#indeximg4").attr('src',"http://192.168.43.176/uploads/"+jsonindex[0].imgurl);
+					$("#indeximg2").attr('src',"http://192.168.43.176/uploads/"+jsonindex[1].imgurl);
+				    $("#indeximg3").attr('src',"http://192.168.43.176/uploads/"+jsonindex[2].imgurl); $("#indeximg5").attr('src',"http://192.168.43.176/uploads/"+jsonindex[2].imgurl);
+                 }
+            });
+		</script>
+				</div>
+				
+				
+   			</div>							
+			</div>
+			
+
+			<!--活动内容-->
+			<div id="tabbar-with-chat" class="mui-control-content">
+				
+		<script>
+			mui.init();
+            mui.ajax('http://192.168.43.176/activity/actlist',{
+                dataType:'json',
+                type:'get',
+                timeout:10000,
+                xhrFields: {
+          				 withCredentials: true
+       				 },
+                crossDomain: true,
+                success:function(data){
+                     var re= JSON.parse(data).list;
+                    var outStr1="";
+                    mui.each(re,function(i,value){
+					var jsonCell = value;
+					outStr1 += '<li id="first-one" data-id='+jsonCell.ac_id+'><div id="picture1"><div><img id="img3" src="http://192.168.43.176/uploads/'+jsonCell.imgurl+'"></div><div style="height: 160px;">'+jsonCell.title+'<div id="picture3"><div id="text2"><img src="images/shijian.png"/>'+jsonCell.create_time+'</div><br /><div id="text3"><img src="images/didian.jpg" />'+jsonCell.place+'</div><br /><div id="text4"><img src="images/yonghu.png" />'+jsonCell.name+'</div></div></div></div></li>';
+				});
+				$("#chevrons").html(outStr1);
+				mui('#chevrons').on('tap','li',function(){
+//	               	window.location.href = 'hdxq.html?id='+this.getAttribute('data-id');
+	                 var w = plus.webview.create('hdxq.html?id='+this.getAttribute('data-id'));
+				     w.show(); // 显示窗口   
+	                 });
+	               }
+	          
+            });
+            /*mui.ajax('http://192.168.43.176/activity/index',{
+                dataType:'json',
+                type:'get',
+                timeout:10000,
+                xhrFields: {
+          				 withCredentials: true
+       				 },
+                crossDomain: true,
+                success:function(data){
+                     var re1= JSON.parse(data).list;
+                     $("#img1").attr('src',"http://192.168.43.176/uploads/"+re1[0].imgurl);
+                     $("#img2").attr('src',"http://192.168.43.176/uploads/"+re1[1].imgurl);
+                 }
+            });*/
+            
+		</script>
+					
+			<header class="mui-bar mui-bar-nav" id="title-plus">
+					    <h1 class="mui-title">活动</h1>
+			</header>
+				
+			<div class="mui-content">
+
+				<div id="jingxuan">精选</div>
+					<div id="picture" style="background-color: #fff;width: 100%;height: 135px;">
+						<img id="img1" src="images/344.png" style="border-radius: 20px;">
+						<img id="img2" src="images/983.png" style="border-radius: 20px;">
+					</div>
+					
+			<div id="xiaonei">校内活动</div>
+						
+				<div id="xiaonei1">
+					<ul id="chevrons" class="mui-table-view mui-table-view-chevron">
+						<li id="first-one">
+							<div id="picture1">
+								<div><img id="img3" src="images/q.png"></div>
+								<div style="height: 160px;margin-left: 70px;">
+								
+									第四届大学生羽毛球比赛
+								    <div id="picture3">
+								     	<div id="text2"><img src="images/shijian.png" />3月-4月</div><br />
+								     	<div id="text3"><img src="images/didian.jpg" />体育馆</div><br />
+								     	<div id="text4"><img src="images/yonghu.png" />体育部</div>
+								    </div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+				
+				</div>				
+			</div>
+			
+			
+        <!--圈子内容-->
+			<div id="tabbar-with-contact" class="mui-control-content">
+				<header class="mui-bar mui-bar-nav" id="title-plus">
+				    <h1 class="mui-title">圈子</h1>
+				    <h2 class="add" onclick="create11()" style="line-height: 130%;">+</h2>
+				</header>
+				
+				<div id="list">
+				<div id="dongtai" style="padding-top: 50px;">	
+				<!--遍历-->
+				
+				<div class="box clearfix" id="box1" style="background-color: #fff;margin-left: 2%;margin-right: 2%;padding-top: 10px;">
+					<a class="close" href="javascript:;">×</a>
+					<div style="float: left;"><img class="head" src="images/sinaweibo.png" style="margin-left: 5px;width: 40px;height: 40px;"/></div>
+		                <div class="main" style="margin-left: 50px;">
+		                    <p class="txt">
+		                        <span class="user">Andy：</span>轻轻的我走了，正如我轻轻的来；我轻轻的招手，作别西天的云彩。轻轻的我走了，正如我轻轻的来；我轻轻的招手，作别西天的云彩。
+		                    </p>
+		                
+		                    <img class="pic" src="images/werewolf.png" style="width: 40%;"/>
+		                </div>
+		              
+		                <div class="info clearfix">
+		                    <span class="time">02-14 23:01</span>
+		                    <a class="praise" href="javascript:;">赞</a>
+		                </div>
+		                <div class="praises-total" total="4" style="display: block;">4个人觉得很赞</div>
+		                
+		                <div class="comment-list">
+		                     <div class="comment-box clearfix" user="self"> 
+                                <div class="comment-content">
+	                                <p class="comment-text"><span class="user">我：</span>写的太好了。
+	                                </p>
+	                                <!--<p class="comment-time">
+	                                2014-02-19 14:36-->
+	                                <a href="javascript:;" class="comment-operate">删除</a>
+	                                </p>
+                                </div>
+                    	     </div>
+	                    </div>
+	                
+	                    <div class="text-box">
+	                    <textarea class="comment onfocus" autocomplete="off" id="textarea" placeholder="评论..."></textarea>
+	                    <!--<a href="#" class="button button-primary button-rounded button-small btn"></a>-->
+	                    <button class="btn">回 复</button>
+	                    <!--<span class="word"><span class="length">0</span>/140</span>-->
+	                    </div>
+	            	</div>
+	            </div>
+	           
+	            <!--遍历--> 
+	         </div>   
+		</div>
+			<script type="text/javascript" src="js/activity.js" ></script>
+			<script>
+				mui.init();
+				var dy_id;
+                mui.ajax('http://192.168.43.176/dynamic/getdata',{
+                dataType:'json',
+                type:'get',
+                timeout:10000,
+                xhrFields: {
+          		withCredentials: true
+       				 },
+       		    crossDomain: true,
+                success:function(data){
+                     var re1= JSON.parse(data).list;
+                    var outStr3="";
+                    mui.each(re1,function(i,value){
+						var jsonCell3 = value;
+						var outStr4="";
+						mui.each(jsonCell3.commentlist,function(i,value){
+							var re5=value;
+							outStr4 +='<div class="comment-list"><div class="comment-box clearfix" user="self"><div class="comment-content"><p class="comment-text"><span class="user">'+ re5.name +'：</span>'+ re5.content +'</p><p class="comment-time">'+ re5.create_time +'</p></div></div></div>';
+						});
+					    if(jsonCell3.imgurl==""||jsonCell3.imgurl==null) {
+					    	outStr3 += '<div class="box clearfix" id="box1" style="background-color: #fff;margin-left: 2%;margin-right: 2%;padding-top: 10px;margin-bottom:10px;"><a class="close" data-id='+jsonCell3.dy_id+'>×</a><div style="float: left;"><img class="head" src="http://192.168.43.176/uploads/'+jsonCell3.touxiang+'" style="margin-left: 5px;width: 40px;height: 40px;"/></div><div class="main" style="margin-left: 50px;"><p class="txt"><span class="user">'+jsonCell3.user_name+'：</span>'+jsonCell3.content+'</p></div><div class="info clearfix"><span class="time">'+jsonCell3.create_time+'</span><a class="praise" href="javascript:;">赞</a></div><div class="praises-total" total="'+jsonCell3.popular+'" style="display: block;">'+jsonCell3.popular+'个人觉得很赞</div>'+ outStr4 +'<div class="text-box"><textarea class="comment onfocus" autocomplete="off" id="textarea" placeholder="评论..."></textarea><button class="btn" data-id='+jsonCell3.dy_id+'>回 复</button><span class="word"></div></div></div>';
+					    } else {
+					    	outStr3 += '<div class="box clearfix" id="box1" style="background-color: #fff;margin-left: 2%;margin-right: 2%;padding-top: 10px;margin-bottom:10px;"><a class="close" data-id='+jsonCell3.dy_id+'>×</a><div style="float: left;"><img class="head" src="http://192.168.43.176/uploads/'+jsonCell3.touxiang+'" style="margin-left: 5px;width: 40px;height: 40px;"/></div><div class="main" style="margin-left: 50px;"><p class="txt"><span class="user">'+jsonCell3.user_name+'：</span>'+jsonCell3.content+'</p><img class="pic" src="http://192.168.43.176/uploads/'+jsonCell3.imgurl+'" style="width: 80%;"/></div><div class="info clearfix"><span class="time">'+jsonCell3.create_time+'</span><a class="praise" href="javascript:;">赞</a></div><div class="praises-total" total="'+jsonCell3.popular+'" style="display: block;">'+jsonCell3.popular+'个人觉得很赞</div>'+ outStr4 +'<div class="text-box"><textarea class="comment onfocus" autocomplete="off" id="textarea" placeholder="评论..."></textarea><button class="btn" data-id='+jsonCell3.dy_id+'>回 复</button><span class="word"></div></div></div>';
+					    }
+					    	
+					    					
+				});
+				
+				$("#dongtai").html(outStr3);
+                },
+               error : function(data){
+				/*alert("服务器连接失败，数据更新失败");*/
+			}
+            });
+            
+            
+
+			</script>
+
+			
+			<!--我的内容-->
+			<div id="tabbar-with-map" class="mui-control-content">
+				<header class="mui-bar mui-bar-nav" id="title-plus">
+					<h1 class="mui-title">我的</h1>
+				</header>
+					<div class="mui-content">
+						<div class="head-one">
+							<img id="headimg" class="imageup" src="images/me.png" style="width: 60px;height: 60px;">
+							<!--<p>毛涵一</p>-->
+						</div>
+
+				
+				<div id="body">
+				    <div id="body1" onclick="create7()"><img src="images/me6.png">&nbsp;&nbsp;我的消息</div>
+					<div id="body2" onclick="create8()"><img src="images/me3.png">&nbsp;&nbsp;我的社团</div>	
+					<div id="body3" onclick="create9()"><img src="images/me1.png">&nbsp;&nbsp;我的活动</div>
+					<div id="body4" onclick="create51()"><img src="images/me7.png">&nbsp;&nbsp;我的动态</div>
+					<div id="body5" onclick="create10()"><img src="images/me5.png">&nbsp;&nbsp;个人资料</div>
+					<div id="body6" onclick="create15()"><img src="images/me8.png">&nbsp;&nbsp;设置</div>
+				</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</body>
+	<script src="js/mui.min.js"></script>
+	<script>
+		mui.init();
+		mui.ajax('http://192.168.43.176/myself/touxiang',{
+			dataType:'json',
+            type:'get',
+            xhrFields: {
+            withCredentials: true
+       				 },
+       		crossDomain: true,
+       		success:function(data){
+       			var re3= JSON.parse(data).list;
+       		$("#headimg").attr('src',"http://192.168.43.176/uploads/"+re3);
+       			if(re3==null)
+       		$("#headimg").attr('src',"images/me.png");
+       			
+       		}
+		});
+	</script>
+	
+</html>

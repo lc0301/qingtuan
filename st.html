@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>new webview</title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/zx.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/xx.js" ></script>
+		<script type="text/javascript">
+			mui.init();
+			var club_id;
+            mui.ajax('http://118.25.137.21/home/getclub',{
+               dataType:'json',
+               type:'get',
+               timeout:10000,
+               success:function(data){
+                  var re= JSON.parse(data).list;
+                  var outStr="";
+                  mui.each(re,function(i,value){
+				  var jsonCell = value;
+				  outStr += '<li class="part-one" data_id='+jsonCell.club_id+'><img src="http://118.25.137.21/uploads/'+jsonCell.imgurl+'" class="adv-pic"/><div id="lanqiu" class="click">'+jsonCell.name+'</div><div class="part-text">'+jsonCell.name+'欢迎你的加入</div></li>';
+				});
+				$("#chevron").html(outStr);
+                 mui('#chevron').on('tap','li',function(){
+	               	window.location.href = 'stxqq.html?id='+this.getAttribute('data-id');
+	                 /*var w = plus.webview.create('stxqq.html?id='+this.getAttribute('data-id'));
+				     w.show();*/ // 显示窗口   
+	                 });
+                }
+            });
+		</script>
+		<script type="text/javascript">
+			// H5 plus事件处理
+			function plusReady(){
+			}
+			if(window.plus){
+				plusReady();
+			}else{
+				document.addEventListener('plusready', plusReady, false);
+			}			
+			// 创建并显示新窗口
+			function create50(){
+				var w = plus.webview.create('stxqq.html');
+				w.show(); // 显示窗口
+			}
+		</script>
+		
+	</head>
+	<body>
+		<div id="pullrefresh" class="mui-content ">
+			<div class="mui-scroll">
+				<div id="title">
+					<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;margin-top: 8px;"></a>
+		 			<div class="tongzhi">社团</div>
+		 		</div>
+			</div>
+		</div>
+		<ul id="chevron" class="mui-table-view mui-table-view-chevron">
+				
+		</ul>
+	</body>
+</html>

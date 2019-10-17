@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/new_file.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/new_file.js" ></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+	</head>
+
+	<body>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			 mui.init();
+            mui.ajax('http://192.168.43.176/myself/myac',{
+                dataType:'json',
+                type:'get',
+                timeout:10000,
+                xhrFields: {
+          		withCredentials: true
+       				 },
+       		    crossDomain: true,
+                success:function(data){
+                	
+                     var re= JSON.parse(data).list;
+                    var outStr1="";
+                    mui.each(re,function(i,value){
+					var jsonCell = value;
+					outStr1 += '<li id="first-one" onclick="create1()" style="list-style-type: none;"><div id="picture1"><div><img id="img3" src="http://192.168.43.176/uploads/'+jsonCell.imgurl+'"></div><div style="height: 160px;">'+jsonCell.title+'<div id="picture3"><div id="text2"><img src="images/shijian.png"/>'+jsonCell.deadline+'</div><br /><div id="text3"><img src="images/didian.jpg" />'+jsonCell.place+'</div><br /><div id="text4"><img src="images/yonghu.png" />'+jsonCell.name+'</div></div></div></div></li>';
+				});
+				
+				$("#mui-card").html(outStr1);
+                 }
+            });
+		</script>
+		<header class="mui-bar mui-bar-nav" id="title-plus">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title">我的活动</h1>
+		</header>
+        <div id="mui-card" style="margin-top: 50px;">
+        	
+        </div>
+		
+	</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/new_file.css" />
+		<link rel="stylesheet" href="css/button.css" />
+		<style>
+			.button{
+				float: right;
+				margin-right: 10px;
+				margin-top: 15px;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<script>
+	    function plusReady(){
+			}
+			if(window.plus){
+				plusReady();
+			}else{
+				document.addEventListener('plusready', plusReady, false);
+			}
+			
+			// 创建并显示新窗口
+			function create40(){
+				var w = plus.webview.create('sttp.html');
+				w.show(); // 显示窗口window.location.href='zx.html';
+		   }
+		</script>
+		<script>
+			mui.ajax('http://192.168.43.176:8081/myself/myac',{
+                dataType:'json',
+                type:'get',
+                timeout:10000,
+                xhrFields: {
+          		withCredentials: true
+       				 },
+       		    crossDomain: true,
+                success:function(data){               	
+                    var re= JSON.parse(data).list;
+                    var outStr1="";
+                    mui.each(re,function(i,value){
+					var jsonCell = value;
+					outStr1 += '<div id="bo1" onclick="create40()"><img src="http://192.168.43.176:8081/uploads/'+jsonCell.imgurl+'" ><p>'+jsonCell.title+'</p></div>';
+				});
+				
+				$("#bo").html(outStr1);
+                 }
+            });
+		</script>
+		
+				<header class="mui-bar mui-bar-nav" id="title-plus">
+					 <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+					<h1 class="mui-title">投票</h1>
+				</header>
+				<div class="mui-content">
+					<div class="head-two">
+						<p>2018年社团投票</p>
+					</div>				
+				<div id="bo">
+				    <div id="bo1" onclick="create40()"><img src="images/werewolf.png" ><p>一月份聚会活动</p></div>
+					<div id="bo2"><img src="images/983.png" ><p>二月份聚会活动</p></div>
+					<div id="bo3"><img src="images/37.png" ><p>二月份漫展活动</p></div>
+					<div id="bo3"><img src="images/37.png" ><p>二月份聚会活动</p></div>
+					
+					
+				</div>	
+				</div>
+				
+			
+	</body>
+</html>

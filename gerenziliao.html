@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min-2.css" />
+		<link rel="stylesheet" href="css/new_file.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+	</head>
+
+	<body>
+		<script>
+			mui.init();
+            mui.ajax('http://118.25.137.21/myself/myinfo',{
+            dataType:'json',
+            type:'get',
+            timeout:10000,
+            xhrFields: {
+               withCredentials: true
+                },
+            crossDomain: true,
+             success:function(data){
+             var re= JSON.parse(data).list;
+                     $("#xingming").val(re.user_name);
+                     $("#banji").val(re.class);
+                     $("#xuehao").val(re.user_id);
+                     $("#xueyuan").val(re.host);
+                     $("#xingquaihao").val(re.habbit);
+                     $("#shoujihaoma").val(re.number);
+                     $("#email").val(re.email);
+            }
+            });
+		</script>
+		<script type="text/javascript">
+			function mykey(){
+			var xingming=$("#xingming").val();
+			var banji=$("#banji").val();
+			var xuehao=$("#xuehao").val();
+			var xueyuan=$("#xueyuan").val();
+			var xingquaihao=$("#xingquaihao").val();
+			var shoujihaoma=$("#shoujihaoma").val();
+			var email=$("#email").val();
+			mui.ajax('http://118.25.137.21/myself/myinfoop',{
+			type:'POST',
+            dataType:'json',
+            xhrFields: {
+               withCredentials: true
+                },
+            crossDomain: true,
+            data:{'user_name':xingming,'class':banji,'user_id':xuehao,'host':xueyuan,'habbit':xingquaihao,'number':shoujihaoma,'email':email},
+            success:function(data){
+                    	if(data==1)
+                    	alert("提交成功~");
+                    }
+			});
+			}
+		</script>
+		
+		<header class="mui-bar mui-bar-nav" id="title-plus">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title">我的资料</h1>
+		</header>
+		<form class="mui-input-group" style="margin-top: 46px;">
+             <div class="mui-input-row" style="height: 50px;">
+                <label style="padding-top: 16px;">姓名</label>
+              <input id="xingming" type="text" class="mui-input-clear" placeholder="请输入姓名">
+             </div>
+             <div class="mui-input-row" style="height: 50px;">
+                 <label>班级</label>
+              <input id="banji" type="text" class="mui-input-clear" placeholder="请输入班级">
+             </div>
+             <div class="mui-input-row" style="height: 50px;">
+                <label>学号</label>
+              <input id="xuehao" type="text" class="mui-input-clear" placeholder="请输入学号">
+             </div>
+             <div class="mui-input-row" style="height: 50px;">
+                <label>学院</label>
+              <input id="xueyuan" type="text" class="mui-input-clear" placeholder="请输入学院">
+             </div>
+             <div class="mui-input-row" style="height: 50px;">
+                <label>兴趣爱好</label>
+              <input id="xingquaihao" type="text" class="mui-input-clear" placeholder="请输入兴趣爱好">
+             </div>
+             <div class="mui-input-row" style="height: 50px;">
+                <label>手机号码</label>
+              <input id="shoujihaoma" type="text" class="mui-input-clear" placeholder="请输入手机号码">
+             </div>
+             <div class="mui-input-row" style="height: 50px;">
+                <label>email</label>
+              <input id="email" type="text" class="mui-input-clear" placeholder="请输入email">
+             </div>
+             <div class="mui-button-row">
+               <button onclick="mykey()" type="button" class="mui-btn mui-btn-primary" >提交</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <button type="button" class="mui-btn mui-btn-danger" >取消</button>
+             </div>
+        </form>
+	</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/new_file.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<style type="text/css">
+			body{
+				background-color: #f4f7fa;
+			}
+			.change{
+				width: 92%;
+				height: 40px;		
+				border-radius: 5%;
+				background-color: #fff;
+				margin-top: -30px;
+				margin-left: 4%;
+			}
+			.change p{
+				float: left;
+				font-size: 16px;
+				font-family: "微软雅黑";
+				/*line-height: 22px;*/
+				padding-left: 45px;
+				padding-top: 8px;
+			}
+			.change1{
+				width: 92%;
+				height: 40px;		
+				border-radius: 5%;
+				background-color: #fff;
+				margin-top: 10px;
+				margin-left: 4%;
+			}
+			.change1 p{
+				float: left;
+				font-size: 16px;
+				font-family: "微软雅黑";
+				/*line-height: 22px;*/
+				padding-left: 45px;
+				padding-top: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav" id="title-plus" >
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title">设置</h1>
+		</header>
+		
+		<div class="head-one"></div>
+		
+		<div id="comment">
+			<div class="change" onclick="create14()">
+				<p>修改密码</p>
+			</div>
+			
+			<div class="change1" onclick="create20()">
+				<p>更换头像</p>
+			</div>
+			
+			
+				
+			</div>
+		
+		
+		<script>
+			function plusReady(){
+			}
+			if(window.plus){
+				plusReady();
+			}else{
+				document.addEventListener('plusready', plusReady, false);
+			}		
+			// 创建并显示新窗口
+			function create14(){
+				var w = plus.webview.create('change_password.html');
+				w.show(); // 显示窗口
+			}	
+			function create20(){
+			var w = plus.webview.create('change-images.html');
+			w.show(); // 显示窗口
+			}	
+		</script>
+		
+	</body>
+</html>

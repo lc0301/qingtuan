@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>new webview</title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		
+		<link rel="stylesheet" href="css/zx.css" />
+		<link rel="stylesheet" href="css/new_file.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/xx.js" ></script>
+
+		
+	</head>
+	<script>
+		mui.init();
+				var dy_id;
+                mui.ajax('',{
+                dataType:'json',
+                type:'get',
+                timeout:10000,
+                xhrFields: {
+          		withCredentials: true
+       				 },
+       		    crossDomain: true,
+                success:function(data){
+                     var re1= JSON.parse(data).list;
+                    var outStr3="";
+                    mui.each(re1,function(i,value){
+						var jsonCell3 = value;
+						var outStr4="";
+						mui.each(jsonCell3.commentlist,function(i,value){
+							var re5=value;
+							outStr4 +='<div class="comment-list"><div class="comment-box clearfix" user="self"><div class="comment-content"><p class="comment-text"><span class="user">'+ re5.name +'：</span>'+ re5.content +'</p><p class="comment-time">'+ re5.create_time +'</p></div></div></div>';
+						});
+					    if(jsonCell3.imgurl==""||jsonCell3.imgurl==null) {
+					    	outStr3 += '<div class="box clearfix" id="box1" style="background-color: #fff;margin-left: 2%;margin-right: 2%;padding: 10px;margin-bottom:10px;"><a class="close" data-id='+jsonCell3.dy_id+'>×</a><div style="float: left;"><img class="head" src="http://118.25.137.21/uploads/'+jsonCell3.touxiang+'" style="margin-left: 5px;width: 40px;height: 40px;"/></div><div class="main" style="margin-left: 50px;"><p class="txt"><span class="user">'+jsonCell3.user_name+'：</span>'+jsonCell3.content+'</p></div><div class="info clearfix"><span class="time">'+jsonCell3.create_time+'</span><a class="praise" href="javascript:;">赞</a></div><div class="praises-total" total="'+jsonCell3.popular+'" style="display: block;">'+jsonCell3.popular+'个人觉得很赞</div>'+ outStr4 +'<div class="text-box"><textarea class="comment onfocus" autocomplete="off" id="textarea" placeholder="评论..."></textarea><button class="btn" data-id='+jsonCell3.dy_id+'>回 复</button><span class="word"><span class="length">0</span>/140</span></div></div></div>';
+					    } else {
+					    	outStr3 += '<div class="box clearfix" id="box1" style="background-color: #fff;margin-left: 2%;margin-right: 2%;padding: 10px;margin-bottom:10px;"><a class="close" data-id='+jsonCell3.dy_id+'>×</a><div style="float: left;"><img class="head" src="http://118.25.137.21/uploads/'+jsonCell3.touxiang+'" style="margin-left: 5px;width: 40px;height: 40px;"/></div><div class="main" style="margin-left: 50px;"><p class="txt"><span class="user">'+jsonCell3.user_name+'：</span>'+jsonCell3.content+'</p><img class="pic" src="http://118.25.137.21/uploads/'+jsonCell3.imgurl+'" style="width: 80%;"/></div><div class="info clearfix"><span class="time">'+jsonCell3.create_time+'</span><a class="praise" href="javascript:;">赞</a></div><div class="praises-total" total="'+jsonCell3.popular+'" style="display: block;">'+jsonCell3.popular+'个人觉得很赞</div>'+ outStr4 +'<div class="text-box"><textarea class="comment onfocus" autocomplete="off" id="textarea" placeholder="评论..."></textarea><button class="btn" data-id='+jsonCell3.dy_id+'>回 复</button><span class="word"><span class="length">0</span>/140</span></div></div></div>';
+					    }
+					    	
+					    					
+				});
+				
+				$("#dongtai").html(outStr3);
+                },
+               error : function(data){
+				alert("服务器连接失败，数据更新失败");
+			}
+            });
+	</script>
+	<body>
+		<header class="mui-bar mui-bar-nav" id="title-plus">
+					<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+					<h1 class="mui-title">我的动态</h1>
+		</header>
+		<div id="dongtai" style="padding-top: 50px;">	
+			
+		</div>
+	</body>
+</html>
