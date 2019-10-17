@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>new webview</title>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<script type="text/javascript" src="js/mui.js" ></script>
+		
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/zx.css" />
+		<link rel="stylesheet" href="css/new_file.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<!--<script type="text/javascript">
+			function plusReady(){
+			}
+			if(window.plus){
+				plusReady();
+			}else{
+				document.addEventListener('plusready', plusReady, false);
+			}			
+			// 创建并显示新窗口
+			function create(){
+				var w = plus.webview.create('stxq.html');
+				w.show(); // 显示窗口
+			}
+		</script>-->
+	
+		<script>
+			mui.init();
+			var club_id;
+            mui.ajax('http://192.168.43.176:80/home/join',{
+               dataType:'json',
+                type:'get',
+                timeout:10000,
+                success:function(data){
+                    var re= JSON.parse(data).list;
+                    var outStr="";
+                    mui.each(re,function(i,value){
+					var jsonCell = value;
+					outStr += '<li class="part-one" data-id='+jsonCell.club_id+'><img src="http://192.168.43.176/uploads/'+jsonCell.imgurl+'" class="adv-pic"/><div id="lanqiu" class="click">'+jsonCell.name+'</div><div class="part-text">'+jsonCell.name+'欢迎你的加入</div></li>';
+				});
+				   $("#chevron").html(outStr);
+	               mui('#chevron').on('tap','li',function(){
+	               	window.location.href = 'stxq.html?id='+this.getAttribute('data-id');
+
+	                    
+	                 });
+	               },
+	                error:function(){
+                	/*plus.ui.toast("error");*/
+                }
+            });
+		</script>
+		<style>
+			.mui-table-view{
+				position: relative;
+			}
+		</style>
+	    <style>
+	    	div.search {
+				padding:10px 0;
+				margin-top: 40px;
+				float: left;
+			
+			}
+			form {
+				position:relative;
+				
+			}
+			input,button {
+				border:none;
+				outline:none;
+			}
+			input {
+				font-size: 13px;
+				width:100%;
+				height:30px;
+				padding-left:13px;
+			}
+			button {
+				height:42px;
+				width:42px;
+				cursor:pointer;
+				position:absolute;
+			}
+			.bar7 form {
+				height:42px;
+			}
+			.bar7 input {
+				width:300px;
+				border-radius:42px;
+				height:30px;
+				background:#f4f7fa;
+				transition:.3s linear;
+				float:right;
+			}
+			.bar7 input:focus {
+				width:300px;
+			
+			}
+			.bar7 button {
+				background:none;
+				right:20px;
+				top: -5px;
+			}
+			.bar7 button:before {
+				content:"Search";
+				font-family:FontAwesome;
+				font-size: 13px;
+				color:#324b4e;
+			}
+	    </style>
+	</head>
+	<body>
+		<div id="pullrefresh" class="mui-content ">
+			
+				<header class="mui-bar mui-bar-nav" id="title-plus" style="height: 90px;">
+			       <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			       <h1 class="mui-title">招新</h1>
+			       <!--<input type="text" id="text" style="margin-top: 50px;margin-left:2%;width: 300px;"/>
+                   <button onclick="mysearch()">搜索</button>-->
+                   <div class="search bar7">
+				        <form>
+				            <input id="text" type="text" placeholder="请输入社团名" name="crid">
+				            <button type="submit" onclick="mysearch()"></button>
+				        </form>
+				    </div>
+		        </header>
+        </div>
+        
+        
+		<ul id="chevron" class="mui-table-view mui-table-view-chevron" style="margin-top: 90px;">
+							<li class="part-one" onclick="create()">
+								<img src="images/q.png" class="adv-pic"/>
+								<div id="lanqiu" class="click">篮球社</div>
+								<div class="part-text">浙科篮球社欢迎你的加入</div>	
+		 				</li>	
+	    </ul>
+	</body>
+	<script>
+	    	function mysearch(){
+	    		var text=$("#text").val();
+	    		alert(text);
+	    	}
+	    	function create(){
+				/*var w = plus.webview.create('stxq.html');
+				w.show(); */// 显示窗口
+				window.location.href='stxq.html';
+			}
+	    </script>
+</html>

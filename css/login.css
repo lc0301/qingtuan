@@ -1,0 +1,177 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+footer{
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+}
+#shouye{
+	float: left;
+	padding-left: 30px;
+}
+#huodong{
+	float: left;
+	padding-left: 30px;
+}
+#dongtai{
+	float: left;
+	padding-left: 30px;
+}
+#xiaoxi{
+	float: left;
+	padding-left: 30px;
+}
+#wode{
+	float: left;
+	padding-left: 30px;
+}
+.head{
+	width: 100%;
+	height: 200px;
+	background-color: #007aff;
+	z-index: -100;
+}
+.head img{
+	position: fixed;
+	margin-left: 40%;
+	margin-top: 50px;
+	width: 100px;
+	height: 100px;
+	border-radius: 60px;
+	background-color: white;
+}
+#body{
+	margin: 8px;
+	font-size: 25px;
+	height: 300px;
+}
+#body1{
+	padding: 8px;
+	height: 50px;
+	line-height: 50px;
+}
+#body2{
+	padding: 8px;
+	height: 50px;
+	line-height: 50px;
+}
+
+#body3{
+	padding: 8px;
+	height: 50px;
+	line-height: 50px;
+}
+
+#body4{
+	padding: 8px;
+	height: 50px;
+	line-height: 50px;
+}
+
+#body5{
+	padding: 8px;
+	height: 50px;
+	line-height: 50px;
+}
+
+#body6{
+	padding: 8px;
+	height: 50px;
+	line-height: 50px;
+}
+#gengduo{
+	float: right;
+}
+#body img{
+	vertical-align:middle;
+	width: 40px;
+}
+#head1{
+	width: 100%;
+	height: 80px;
+	background-color: #46B8DA;
+	font-size: 30px;
+	text-align: center;
+	line-height: 80px;
+}
+#head2{
+	width: 100%;
+	height: 80px;
+	background-color: #007aff;
+	font-size: 30px;
+	text-align: center;
+	line-height: 80px;
+}
+#jingxuan{
+	font-size: 20px;
+	padding: 15px;
+}
+#gengduo1{
+	float: right;
+}
+#gengduo1 img{
+	vertical-align: middle;
+	height: 20px;
+	background-color: #C0C0C0;
+}
+#picture img{
+	width: 190px;
+	height: 150px;
+	float: left;
+	padding: 15px;
+}
+#xiaonei{
+	width: 400px;
+	height: 100px;
+}
+#xiaonei{
+	font-size: 20px;
+	padding: 10px;
+}
+#gengduo2{
+	float: right;
+}
+#gengduo2 img{
+	vertical-align: middle;
+	height: 20px;
+	background-color: #C0C0C0;
+}
+#picture1{
+	padding: 10px;
+}
+#picture1 img{
+	float: left;
+	width: 150px;
+	height: 200px;
+	margin-right: 10px;
+}
+#head3{
+	width: 100%;
+	height: 80px;
+	background-color: #46B8DA;
+	font-size: 30px;
+	line-height: 80px;
+}
+#head3 img{
+	vertical-align: middle;
+	width: 30px;
+	height: 30px;
+}
+#picture2 img{
+	width: 100%;
+	height: 350px;
+    
+}
+#picture3 img{
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
+	margin: 8px;
+}
+.mui-slider-group img{
+	width: 100%;
+	height: 200px;
+}
+

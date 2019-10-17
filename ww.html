@@ -1,0 +1,174 @@
+<!DOCTYPE html>  
+<html>  
+    <head>  
+    	<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+        <meta charset="UTF-8">  
+        <title></title>  
+        <link href="css/mui.min.css" rel="stylesheet" /> 
+        <link rel="stylesheet" href="css/new_file.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<script src="js/mui.min.js"></script>
+		<script src="js/ajaxfileupload.js" type="text/javascript"></script>
+		
+		
+        <style>  
+            .imageup{ width:100px; height: 36px; line-height:36px;}  
+            .button{ width: 45px;height: 25px; margin-top: 10px; float: right; margin-right: 2%; background-color: #33BBFF; border: 1px solid #fff; color: #fff; font-family: "微软雅黑"; font-size: 14px;line-height: 12px;padding-left:8px;} 
+             
+        </style>  
+        </head>  
+          <body>  
+          	<header class="mui-bar mui-bar-nav" id="title-plus">
+		       <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+		       <h1 class="mui-title">发布</h1>
+		       <button id="button" class='button' onclick="upload()"> 发表</button>
+	        </header>
+    	
+		<div class="text-box" style="color: #eee;margin-top: 50px;">
+	        <textarea id="textarea" class="comment onfocus text" autocomplete="off" onfocus="if(this.value==this.defaultValue){this.value=''}" onblur="if(this.value==''){this.value=this.defaultValue}" style="width: 96%;height: 150px;background-color: #fff;border: 0px;margin-left: 2%;margin-top: 2%; color: #eee;" >请输入文字...</textarea>
+	        
+	    </div> 
+		    	
+	    	
+    	<div style="width: 100px;height: 100px;background-color: #eee;margin-left: 2%;">
+    		<img id="headimg" class="imageup" src="images/iconfont-tianjia.png" style="width: 60px;height: 60px; margin-top: 15px;margin-left: 20px;"><p style="text-align: center;">图片/photo</p> 
+    	</div>
+    	
+    	
+    	
+    <script type="text/javascript">
+//  	function mykey(){
+//  		var textarea=$("#textarea").val();
+//  		mui.ajax('http://192.168.43.176/dynamic/uploadcon',{
+//  			dataType:'json',
+//              type:'POST',
+//              timeout:10000,
+//              xhrFields: {
+//        				 withCredentials: true
+//     				 },
+//              crossDomain: true,
+//              data:{'content':textarea},
+//             
+//              
+//  		});
+//  	}
+//  url　　　　　　　　　　  上传处理程序地址。　　
+//	fileElementId　　　　　  需要上传的文件域的ID，即<input type="file">的ID。
+//	secureuri　　　　　　　 是否启用安全提交，默认为false。 
+//	dataType　　　　　　　 服务器返回的数据类型。可以为xml,script,json,html。如果不填写，jQuery会自动判断。
+//	success　　　　　　　　提交成功后自动执行的处理函数，参数data就是服务器返回的数据。
+//	error　　　　　　　　　 提交失败自动执行的处理函数。
+//	data	　　　　　　　　　 自定义参数。这个东西比较有用，当有数据是与上传的图片相关的时候，这个东西就要用到了。
+//	type	　　　　　　　　　  当要提交自定义参数时，这个参数要设置成post	
+//	SyntaxError: missing ; before statement错误
+//　　如果出现这个错误就需要检查url路径是否可以访问
+//	SyntaxError: syntax error错误
+//　　如果出现这个错误就需要检查处理提交操作的服务器后台处理程序是否存在语法错误
+//	SyntaxError: invalid property id错误
+//　　如果出现这个错误就需要检查文本域属性ID是否存在
+//	SyntaxError: missing } in XML expression错误
+//　　如果出现这个错误就需要检查文件name是否一致或不存在
+//	其它自定义错误
+//　　大家可使用变量$error直接打印的方法检查各参数是否正确，比起上面这些无效的错误提示还是方便很多。 
+            mui.init();
+            function plusReady(){  
+                // 弹出系统选择按钮框  
+                mui("body").on("tap",".imageup",function(){  
+                    page.imgUp();  
+                })  
+                  
+            }  
+            var page=null;  
+            page={  
+                imgUp:function(){  
+                    var m=this;  
+                    plus.nativeUI.actionSheet({cancel:"取消",buttons:[  
+                        {title:"拍照"},  
+                        {title:"从相册中选择"}  
+                    ]}, function(e){//1 是拍照  2 从相册中选择  
+                        switch(e.index){  
+                            case 1:appendByCamera();break;  
+                            case 2:appendByGallery();break;  
+                        }  
+                    });  
+                }  
+                //摄像头  
+            }  
+              
+            // 拍照添加文件
+            function appendByCamera(){
+                plus.camera.getCamera().captureImage(function(e){
+                    console.log(e);
+                    plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+                    var path = entry.toLocalURL(); 
+                    document.getElementById("headimg").src = path; 
+                    //就是这里www.bcty365.com 
+                    }, function(e) { 
+                        mui.toast("读取拍照文件错误：" + e.message); 
+                    }); 
+    
+                });    
+            }
+            // 从相册添加文件
+            function appendByGallery(){
+                plus.gallery.pick(function(path){
+                    document.getElementById("headimg").src = path; 
+
+                });
+            }
+            
+              
+            //服务端接口路径
+            var server = "http://192.168.43.176/dynamic/uploadimg";
+            //获取图片元素
+            var files = document.getElementById('headimg');
+            // 上传文件
+            function upload(){
+                console.log(files.src);
+                var wt=plus.nativeUI.showWaiting();
+                var task=plus.uploader.createUpload(server,
+                    {method:"POST"},
+                    function(t,status){ //上传完成
+                        if(status==200){
+                            alert("上传成功"/*+t.responseText*/);
+                            wt.close(); //关闭等待提示按钮
+                        }else{
+                            alert("上传失败"/*+status*/);
+                            wt.close();//关闭等待提示按钮
+                        }
+                    }
+                );
+                //添加其他参数
+                task.addData("name","test");
+                task.addFile(files.src,{key:"file"});
+                task.start();
+                //发表文字
+                var textarea=$("#textarea").val();
+    		mui.ajax('http://192.168.43.176/dynamic/uploadcon',{
+    			dataType:'json',
+                type:'POST',
+                timeout:10000,
+                xhrFields: {
+          				 withCredentials: true
+       				 },
+                crossDomain: true,
+                data:{'content':textarea},
+               
+                
+    		});
+                //转跳页面
+                var w = plus.webview.create('index.html');
+				w.show(); // 显示窗口window.location.href='zx.html';
+            }  
+            if(window.plus){  
+                plusReady();  
+            }else{  
+                document.addEventListener("plusready",plusReady,false);  
+            }       
+        
+        </script>  
+
+    </body>   
+</html>
+	
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/new_file.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+		<style type="text/css">
+			body{
+				background-color: #f4f7fa;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav" id="title-plus" >
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title">资讯</h1>
+		</header>
+		
+		<div class="head-one"></div>
+		
+		<div id="comment">
+			<div class="comment-one">
+				<img src="images/ds.png" />
+				<p>关于借用：请社团工作人员在周一到周五中午12点半到l西楼四楼社联办公室，找财务部填写物品借用表，确定借用物资的数量和种类，再具体联系西图的开门人员。备注：周末如无特殊情况不予批单</p>
+			</div>
+			<div class="comment-two" onclick="create12()">
+				<img src="images/ds.png" />
+				<p>《前端学校学生社团工作文件汇编》<br />点击获得- 密码：zust</p>
+			</div>
+			<div class="comment-three" onclick="create13()">
+				<img src="images/ds.png" />
+				<p>社团先进个人、优秀社团干部、奖学金申报表<br />点击获得- 密码：zust</p>
+			</div>
+		</div>
+		
+		<script>
+				 		function plusReady(){
+			}
+			if(window.plus){
+				plusReady();
+			}else{
+				document.addEventListener('plusready', plusReady, false);
+			}
+			
+			// 创建并显示新窗口
+			function create12(){
+				var w = plus.webview.create('https://pan.baidu.com/s/1miGEZmK');
+				w.show(); // 显示窗口
+			}
+			function create13(){
+				var w = plus.webview.create('https://pan.baidu.com/s/1pLr6uyZ');
+				w.show(); // 显示窗口
+			}
+		</script>
+	</body>
+</html>

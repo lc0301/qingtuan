@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/mui.min.css" />
+		<link rel="stylesheet" href="css/new_file.css" />
+		<link rel="stylesheet" href="css/stxq.css" />
+		<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+		<script type="text/javascript" src="js/new_file.js" ></script>
+		<script type="text/javascript" src="js/mui.min.js" ></script>
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			mui.init();
+				mui.ajax('http://118.25.137.21/myself/mynotic',{
+               dataType:'json',
+                type:'get',
+                timeout:10000,
+                xhrFields: {
+          		withCredentials: true
+       				 },
+       		    crossDomain: true,
+                success:function(data){
+                    var re= JSON.parse(data).list;
+                    var outStr="";
+                    mui.each(re,function(i,value){
+					var jsonCell = value;
+					outStr += '<div id="tongzhi"><p>通知'+jsonCell.no+'：'+jsonCell.content+'</p><p>发布时间：'+jsonCell.create_time+'</p><p>来自：'+jsonCell.name+'</p></div>';
+				});
+				$("#content").html(outStr);
+                 }
+          });
+		</script>
+		<header class="mui-bar mui-bar-nav" id="title-plus">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+			<h1 class="mui-title">我的消息</h1>
+		</header>
+
+    <ul class="mui-table-view" style="margin-top: 50px;"> 
+        <li id="viewcell" class="mui-table-view-cell mui-collapse" style="position: relative;">
+            <a id="navigate" class="mui-navigate-right">通知</a>
+            <div id="content" class="mui-collapse-content" style="font-size: 20px;line-height: 30px;font-family: '微软雅黑';">
+                <div id="tongzhi">
+                	 <p>通知：</p><p>发布时间：</p><p>来自：</p>
+                </div>
+            </div>
+        </li>
+        <li class="mui-table-view-cell mui-collapse" style="position: relative;">
+            <a class="mui-navigate-right">活动告知</a>
+            <div class="mui-collapse-content">
+                <p style="font-size: 25px;line-height: 30px;font-family: '微软雅黑';">无</p>
+            </div>
+        </li>
+    </ul>
+		
+	</body>
+
+</html>
