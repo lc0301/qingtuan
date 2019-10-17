@@ -1,0 +1,120 @@
+<!DOCTYPE html>  
+<html>  
+    <head>  
+    	<script type="text/javascript" src="js/jquery-1.11.0.js" ></script>
+        <meta charset="UTF-8">  
+        <title></title>  
+        <link href="css/mui.min.css" rel="stylesheet" /> 
+        <link rel="stylesheet" href="css/new_file.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<script src="js/mui.min.js"></script> 
+		<script src="js/ajaxfileupload.js" type="text/javascript"></script>
+		
+		     
+    </head>  
+          <body>  
+          	<header class="mui-bar mui-bar-nav" id="title-plus">
+		       <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" style="color: #fff;"></a>
+		       <h1 class="mui-title">更换头像</h1>
+	        </header>
+    	
+		<div style="margin-left: 20px;margin-top: 50px;">
+			
+			<img id="headimg" class="imageup" src="images/iconfont-tianjia.png" style="width: 100px;height: 100px;">
+            <br />
+            <input type="submit" onclick="upload()" style="margin-left: 9px;"/>
+		</div>
+    	
+    	
+  
+		<script>
+			function plusReady(){  
+                // 弹出系统选择按钮框  
+                mui("body").on("tap",".imageup",function(){  
+                    page.imgUp();  
+                })  
+                  
+            }  
+            var page=null;  
+            page={  
+                imgUp:function(){  
+                    var m=this;  
+                    plus.nativeUI.actionSheet({cancel:"取消",buttons:[  
+                        {title:"拍照"},  
+                        {title:"从相册中选择"}  
+                    ]}, function(e){//1 是拍照  2 从相册中选择  
+                        switch(e.index){  
+                            case 1:appendByCamera();break;  
+                            case 2:appendByGallery();break;  
+                        }  
+                    });  
+                }  
+                //摄像头  
+            }  
+              
+            // 拍照添加文件
+            function appendByCamera(){
+                plus.camera.getCamera().captureImage(function(e){
+                    console.log(e);
+                    plus.io.resolveLocalFileSystemURL(e, function(entry) { 
+                    var path = entry.toLocalURL(); 
+                    document.getElementById("headimg").src = path; 
+                    //就是这里www.bcty365.com 
+                    }, function(e) { 
+                        mui.toast("读取拍照文件错误：" + e.message); 
+                    }); 
+    
+                });    
+            }
+            // 从相册添加文件
+            function appendByGallery(){
+                plus.gallery.pick(function(path){
+                    document.getElementById("headimg").src = path; 
+
+                });
+            }
+            
+              
+            //服务端接口路径
+            var server = "http://118.25.137.21/myself/modtouxiang";
+            //获取图片元素
+            var files = document.getElementById('headimg');
+            
+            // 上传文件
+            function upload(){
+                console.log(files.src);
+                var wt=plus.nativeUI.showWaiting();
+                var task=plus.uploader.createUpload(server,
+                    {method:"POST"},
+                    function(t,status){ //上传完成
+                        if(status==200){
+                            alert("上传成功");
+                            wt.close(); //关闭等待提示按钮
+                        }else{
+                            alert("上传失败");
+                            wt.close();//关闭等待提示按钮
+                        }
+                    }
+                );
+                //添加其他参数
+                task.addData("name","test");
+                task.addFile(files.src,{key:"file"});
+                task.start();
+                
+                var w = plus.webview.create('index.html');
+				w.show(); // 显示窗口window.location.href='zx.html';
+                
+            }  
+            if(window.plus){  
+                plusReady();  
+            }else{  
+                document.addEventListener("plusready",plusReady,false);  
+            }       
+        
+		</script>
+		
+
+    </body>   
+</html>
+	
+
